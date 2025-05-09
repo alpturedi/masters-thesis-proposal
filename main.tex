@@ -13,167 +13,119 @@
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{makecell}
+\usepackage{indentfirst}
+\usepackage{acro}
+\usepackage[indent]{parskip}
 
 \title{% 
     \textbf{Master Thesis Research Proposal}\\
     \vfill
-    \textbf{Your Title Goes Here}
+    \textbf{Assessing Web Accessibility of Generative Code}
     }
-\author{Your Full Name}
+\author{Alp K. Türedi}
+
+\DeclareAcronym{wcag}{
+  short=WCAG,
+  long=Web Content Accessibility Guidelines,
+}
+\DeclareAcronym{sc}{
+  short=SC,
+  long=Success Criteria,
+}
+\DeclareAcronym{wai}{
+  short=WAI,
+  long=Web Accessibility Initiative,
+}
 
 \begin{document}
 \maketitle
 
 {\centering
-    Supervisor: [Your Supervisor(s) name]\\
+    Supervisor: [TBD]\\
     \vfill
-    Tallinn University / Cyprus University of Technology\\
-    \href{mailto: youremail@idmaster.eu}{youremail@idmaster.eu}\\ %Change both email fields!
+    Tallinn University\\
+    \href{mailto:aturedi@tlu.ee}{aturedi@tlu.ee}\\ 
     }
 
 \begin{abstract}
-Your abstract goes here. One paragraph that summarizes the content of your proposal. Begin with one or two sentences of your research problem. Then present your motivation and your insight about how to address it. Then present your research goal and methods and your expected outcomes.
+This thesis aims to identify and analyze accessibility barriers present in the outputs of selected generative AI tools for web development, specifically Vercel's v0 and StackBlitz's Bolt.new. The methodology involves compiling a set of prompts, encompassing both general and accessibility-focused instructions, and using these prompts to generate code repositories via the chosen AI tools. Subsequently, each generated repository will undergo accessibility evaluation using the WAVE tool. Finally, the study will investigate the capacity of these AI tools to automatically remediate identified accessibility issues and will report on the effectiveness of these attempts. The findings of this research will contribute to a deeper understanding of the current state of accessibility considerations within generative AI for web development and highlight areas for future improvement.
+
 \vfill
-\textbf{Keywords:} 4-5 Keywords, separated by commas.
+\textbf{Keywords:} Web accessibility, WCAG, Large Language Models, Generative Code
 \end{abstract}
 
 
 \section{Introduction}
-A small introduction presenting the main idea, rationale, and background of the proposal. It serves to introduce the topic, scope and research perspective to the reader and sets up the expectations for the following sections. It is recommended that the basic assertions are supported by references.
+The rapid advancement of generative artificial intelligence is transforming numerous domains, and web development is no exception. Tools like Vercel's v0 and StackBlitz's bolt.new are empowering developers to generate web repositories with unprecedented speed and efficiency. However, this accelerated development raises critical questions about the accessibility of the resulting web content. Accessibility, which ensures that websites are usable by everyone, including individuals with disabilities, is paramount. This study investigates the accessibility implications of AI-generated web content, examining the common accessibility issues that arise, the AI tools' capacity for remediation, and the potential of prompt engineering to mitigate these issues.
 
-This template is prepared in Overleaf. To view tutorials, user guides, and further documentation, please visit our \href{https://www.overleaf.com/learn}{help library}, or head to our plans page to \href{https://www.overleaf.com/user/subscription/plans}{choose your plan}. Or just write me at \href{mailto: dirabien@tlu.ee}{dirabien@tlu.ee} or Mustafa at \href{mailto: rajaz@tlu.ee}{rajaz@tlu.ee}.
+\printacronyms[display=all,heading=section]
 
 \section{Problem Statement}
-States the research problem, gives evidence that it is in fact a research problem.
-Discusses the current state of the art in the research field. This includes a critical summary and discussion of previous attempts to solve the research problem by other researchers and gives appropriate citations to that work.
-Mentions the contribution of the current proposal to this problem.
+While AI design tools like Bolt and v0 promise rapid UI generation, their ability to produce accessible interfaces for users with disabilities is largely unknown. This poses a potential risk of increasing accessibility barriers in digital products, hindering inclusivity and equitable access. Existing evaluation methods may not fully capture the nuanced challenges presented by AI-generated UIs, especially considering the variability and potential inconsistencies in their output.
 
 \subsection{Research Motivation and Purpose}
 
-Explain simply and clearly what's your motivation to address this problem and what is the purpose of your research. Why is this important?
-
-\subsection{How to create Sections and Subsections}
-
-Simply use the section and subsection commands, as in this example document! With Overleaf, all the formatting and numbering is handled automatically according to the template you've chosen. If you're using Rich Text mode, you can also create new section and subsections via the buttons in the editor toolbar.
+My motivation is rooted in the belief that everyone deserves equal access to the digital world. The purpose of highlighting the accessibility risks associated with rapidly advancing generative AI in code creation is to prevent the unintentional creation of inaccessible web pages. This is crucial ethically, legally, for broader audience reach, and to ensure that technological progress fosters inclusivity rather than creating new barriers.
 
 \section{Literature Review}
-A summary of the literature review you conducted. It introduces the related work and conceptual framework that supports the proposed research problem.
-It should give a solid summary of the state-of-the-art on the topic and identify the relevant gap or need that the proposal aims to address.
-While it doesn’t need to be systematic, it should be deep and show that the author has a deep understanding of the main ideas and problems on the topic. It should not be a simple list of references and highlights but an intellectual engagement with the materials showing the author’s take on the literature.
+The investigation encompasses two key phases: site generation and accessibility assessment. The site generation phase will be evaluated based on the prompt selection methodology, the specific Large Language Model (LLM) employed, and any iterative prompting strategies implemented to address potential issues. The subsequent assessment phase will focus on the methodology used to evaluate the generated websites against the Web Content Accessibility Guidelines (WCAG).
 
-\subsection{How to add Citations and a References List}
+A singular study employing a comparable methodology is that of Aljedaani et al. (2024) \cite{aljedaani_does_2024}, who utilized ChatGPT for a related purpose. In their work, 88 developers generated websites, and ChatGPT was subsequently prompted to remediate these websites. Their findings indicated that a majority of the generated websites contained accessibility violations. However, ChatGPT demonstrated a 70\% success rate in rectifying these violations within its own generated source code and a 73\% success rate in addressing accessibility issues present in third-party open-source project code \cite{aljedaani_does_2024}.
 
-You can simply upload a \verb|.bib| file containing your BibTeX entries, created with a tool such as Zotero, Mendeley, Paperpile orJabRef. You can then cite entries from it, like this: \cite{viNotJustSeeing2017}. Just remember to specify a bibliography style, as well as the filename of the \verb|.bib|. You can find a \href{https://www.overleaf.com/help/97-how-to-include-a-bibliography-using-bibtex}{video tutorial here} to learn more about BibTeX.
+The reviewed studies on generative AI reveal two key approaches to prompt selection. The first involves a participant-driven methodology, where researchers recruit individuals and directly observe their interaction with the tools, capturing the prompts they naturally generate and employ. Conversely, the second approach relies on researcher-defined prompts, which are formulated without explicit reasoning and are presented as inherently obvious or logical choices for the intended task.
 
-Just to have one, we can add a couple more of citations, like \cite{lempinenConstructingDesignFramework2012}, \cite{menichinelliResearchDesignFramework2019} and \cite{andersonFrameworkDevelopingAlternative2021}. Here is one of the biggest advantages of \LaTeX: \hspace{1pt} It allows us to add our references and forget about doing the Reference list manually and mess with the formats. We can even easily change the bibliographic format we use! In my case, since I am very prone to forget things, this is a kill feature.
+The second aspect of this study concerns assessment. WCAG 2.2 is a guidelines document and there needs to be a methodology to check those front-ends against those guidelines. There are three SC (success criteria) levels defined, level-A, AA, and AAA. Abu Doush et al. (2023)\cite{abu_doush_web_2023} conducted an evaluation of 34 automated web accessibility assessment tools, including WAVE, to determine their effectiveness in measuring WCAG compliance. Their results showed that “44\% of all WCAG SC can be automatically checked offering conformance details directly from web content. [...] The other 43\% of WCAG SC “all levels” cannot be easily checked automatically. This means that there is no direct mapping from SC to results using existing technologies and requires an expert to double-check. These include things like non-text content video, no keyboard trap, focus order (level A), headings and labels and error suggestions (level AA), timeouts, interruptions, and re-authentication (level AAA). The remaining 13\% of WCAG 2.1 SC have no direct automatic way to be checked.” \cite{abu_doush_web_2023}
+
+Ara et al. \cite{ara_inclusive_2024} conducted a literature review of different existing solutions for web accessibility testing to identify their challenges and limitations. They reviewed different web accessibility assessing studies. They also talked about the limitations of algorithmic evaluations. Aligned with the previous study they also said “most of the accessibility testing tools only check a specific number of WCAG success criteria which is around 50\% of the total guidelines.” And they suggested user testing and expert testing for validations. \cite{ara_inclusive_2024}
+
+Lastly López-Gil \& Pereira \cite{lopez-gil_turning_2025} compared WAVE with ChatGPT for WCAG evaluation. In their study “the LLM-based scripts successfully identified accessibility issues that automatic accessibility evaluators missed or labelled as warnings, achieving an overall 87.18\% detection across applicable test cases.” This was to evaluate web accessibility success criteria. \cite{lopez-gil_turning_2025}
 
 \section{Research Goal and Research Questions}
-States the goal / objective / purpose of the research that is derived from the problem statement
-Lists concrete, specific questions stated in operational terms that can be answered with the research
+To evaluate the accessibility of user interfaces generated by Bolt by StackBlitz and v0 by Vercel, identifying potential accessibility barriers and proposing recommendations for improving the inclusivity of these AI design tools.
 
 \subsection{Research Questions}
-Here you present your Research Questions
+
 \begin{enumerate}
-    \item \textit{ What is your Research Question?}
-    \item \textit{Do you have more than One?}
+    \item \textit{To what extent do the user interfaces generated by Bolt and v0 comply with established accessibility guidelines WCAG 2.2?}
+    \item \textit{What are the common accessibility barriers present in the UIs generated by these AI design tools?}
+    \item \textit{What specific recommendations can be provided to developers and designers to improve the accessibility of UIs generated by AI design tools?}
 \end{enumerate}
 
-\subsection{How to add Lists}
+\section{Conceptual or Theoretical Framework and Methodology}
+“Web Content Accessibility Guidelines (WCAG) 2.2 covers a wide range of recommendations for making web content more accessible. Following these guidelines will make content more accessible to a wider range of people with disabilities, including accommodations for blindness and low vision, deafness and hearing loss, limited movement, speech disabilities, photosensitivity, and combinations of these, and some accommodation for learning disabilities and cognitive limitations; but will not address every user need for people with these disabilities. These guidelines address accessibility of web content on any kind of device (including desktops, laptops, kiosks, and mobile devices). Following these guidelines will also often make web content more usable to users in general.
 
-You can make lists with automatic numbering \dots
-\begin{enumerate}
-\item Like this,
-\item and like this.
-\end{enumerate}
-\dots or bullet points \dots
-\begin{itemize}
-\item Like this,
-\item and like this.
-\end{itemize}
+WCAG 2.2 success criteria are written as testable statements that are not technology-specific. Guidance about satisfying the success criteria in specific technologies, as well as general information about interpreting the success criteria, is provided in separate documents. See Web Content Accessibility Guidelines (WCAG) Overview for an introduction and links to WCAG technical and educational material.” (Web Content Accessibility Guidelines (WCAG) 2.2, 2024)
 
-\section{Conceptual or Theoretical Framework (if needed) and Methodology}
-If you are working with some specific Framework, you introduce the framework, the rationale for selecting it for this proposal and how you plan to engage with it for your research.
-You present the general Research Methodology (e.g. Design Research, Experimental Research, Qualitative, Quantitative, Mixed Methods, Constructivism, Etc …) that you plan to use, and how it relates to the methods that you are selecting to answer your Research Question(s)
-Describes the Sample, the Methods, the Materials and Procedures used and the implementation. If you have more than one Research Question it is a good practice to create a table or section where you explain which method(s) are being used for answering which Research Questions.
-Remember that you have Methods for Data Collection and Methods for Data Analysis. You should explain not only how you are going to collect the data but also how you plan to analyze it.
-
-\subsection{How to add Tables}
-
-Use the table and tabular environments for basic tables --- see Table~\ref{tab:research design}, for example. For more information, please see this help article on \href{https://www.overleaf.com/learn/latex/tables}{tables}. 
-
-Tables in \LaTeX \hspace{1pt} are not so straightforward as in other places. If you prefer, you can prepare them in other sources and paste them as figures, although that would limit our ability to select text in them. But if you are ready for a challenge, just jump in!
-
-In the Source View you can find the code for our Table 1. The first row of data will always be the Header and the rest will be the content. You have to manually manage the length of the cells, since \LaTeX \hspace{1pt} won't do it on its own (it had to have one little thing). 
-
-To manage it so, we are using an extra package called makecell that allows us to use some extra formatting options. The two new commands we use are \verb+\thead{}+ for the headers and \verb+\makecell()+ for the cells. This allows us add breaks to the cells without messing our table. 
-
-Finally, one last note to understand, the command \verb+\begin{tabular}{c|c}+ begins with just one vertical line | and two c's. This letter refers to the alignment, l for left and r right. The | is to indicate where you want a vertical line. You can add as many rows as you want by adding vertical lines and l,c or r to the the keys after the tabular command.
-
-Yes, it is a bit convoluted but the ONE thing it does amazing, is that it numbers correctly all your tables and references automatically. Making adding and editing very easy and reducing the risk of silly errors. So it is worth a try. Again, if you have any doubts you can ask us.
-
-\begin{table}[htb] %NB: The [htb] argument is what makes the table appear after the text talking about the table. If we don't use it, the table can appear before if this is the most suitable position for it. 
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline %This adds an horizontal line to the top of the table.
-\thead{\textbf{Phase}} & \thead{\textbf{Study}} & \thead{\textbf{Objectives}} 
-& \thead{\textbf{Data Collection}\\\textbf{Methods}} 
-& \thead{\textbf{Data Analysis}\\ \textbf{Methods}} 
-& \thead{\textbf{Expected} \\\textbf{Outcome}} \\ \hline %The \\ is the linebreak 
-
-I & \makecell{Conceptual \\ Wizard of Oz} & \makecell{Validating \\initial \\ concept}
-& \makecell{Unstructured\\Interviews} & \makecell{Qualitative \\Content \\ Analysis} 
-& \makecell{Design Artifact\\ Guidelines} \\\hline 
-
-II & \makecell{Low-Fi Prototype \\ Case Study} & \makecell{Addressing\\RQ1}
-& \makecell{Semi-structured\\Interviews} & \makecell{Qualitative \\Content \\ Analysis} 
-& \makecell{Initial \\ Understanding\\ of RQ1} \\\hline 
-
-III & \makecell{Hi-Fi Prototype \\ Case Study} & \makecell{Addressing\\RQ1}
-& \makecell{Semi-structured\\Interviews} & \makecell{Qualitative \\Content \\ Analysis} 
-& \makecell{In-Depth \\ Understanding\\ of RQ1} \\\hline 
-
-III & \makecell{2nd Iteration \\ Hi-Fi Prototype \\ Case Study} & \makecell{Addressing\\RQ1}
-& \makecell{Semi-structured\\Interviews} & \makecell{Qualitative \\Content \\ Analysis} 
-& \makecell{In-Depth \\ Understanding\\ of RQ1} \\\hline 
-
-\end{tabular}
-\caption{\label{tab:research design}Example of a Table with and Example of a Research Design.}
-\end{table}
-
-% if you must use one, here is the command to "encourage" the system to use one. It will still not use it if it is not a good idea.
-
-%\pagebreak 
+There are 45 automated listing  evaluation tools for websites on WAI’s website (Initiative, n.d.). Some of them are specific like WCAG Color Contrast Checker that checks only for specific items. Many of the studies use the WAVE Web Accessibility Evaluation Tool by WebAIM. WAVE gives a visual representation of the websites and highlights errors with yellow and on the sidebar gives the list of the problems. It has a Chromium plugin where you can initiate the evaluation from.  It is up to date to access WCAG 2.2. (WAVE Web Accessibility Evaluation Tools, n.d.)
 
 \section{Research Plan}
-Mentions the time plan, resources needed and constraints that the research faces and possibilities to overcome them.
-It is strongly recommended to add a Gantt chart illustrating the schedule of the plan.
 
+\subsection{Phase 1: Compiling Real-World Prompts for Accessibility Evaluation}
 
-\subsection{How to include Figures}
+This initial phase focuses on gathering authentic prompts that reflect how designers and developers would naturally interact with generative AI tools in their workflows. We will conduct a targeted workshop that will involve a diverse group of designers and developers with varying levels of experience. The workshop will center around specific, real-world design and development scenarios (e.g., generating a landing page section, creating a component library, implementing a data visualization). For each scenario, participants will be asked to formulate prompts as they would in a practical setting. Crucially, for each scenario, we will explicitly guide participants to create two distinct prompt sets:
+Standard Prompt: A prompt formulated without specific consideration for accessibility requirements. This will represent a baseline user interaction.
+Accessibility-Considered Prompt: A prompt explicitly incorporating accessibility-related keywords, constraints, or considerations (e.g., "create a form with clear labels and keyboard navigation," "generate an image carousel with alt text for screen readers").
 
-First you have to upload the image file from your computer using the upload link in the file-tree menu. Then use the includegraphics command to include it in your document. Use the figure environment and the caption command to add a number and a caption to your figure. See the code for Figure \ref{fig:research plan} in this section for an example.
+This approach will allow for a direct comparison of the outputs generated from standard versus accessibility-aware prompting, providing valuable insights into the tools' inherent accessibility considerations and their responsiveness to explicit accessibility instructions. The selection of participants will aim for a balance of expertise and backgrounds to ensure a broad range of prompting styles and perspectives.
 
-Note that your figure will automatically be placed in the most appropriate place for it, given the surrounding text and taking into account other figures or tables that may be close by. You can find out more about adding images to your documents in this help article on \href{https://www.overleaf.com/learn/how-to/Including_images_on_Overleaf}{including images on Overleaf}.
+\subsection{Phase 2: Generating Web Repositories with Target AI Tools}
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width=0.3\textwidth]{Gantt Chart.png}
-\caption{\label{fig:research plan}A very optimistic Research Plan}
-\end{figure}
+The second phase involves utilizing the curated prompts to generate repositories using two prominent generative AI tools for front-end development: Vercel's v0 and StackBlitz's bolt.new. These platforms were chosen because of their popularity within the developer community and their focus on rapid prototyping and deployment. We will systematically input each of the collected prompts (both standard and accessibility-considered variations for each scenario) into both v0 and bolt.new. This process will result in a collection of generated web repositories, each stemming from the same underlying scenario, but initiated with different prompting strategies and processed by different AI engines. This comparison across tools will be achieved to understand the different ways in which different AI models interpret and translate prompts into web output.
+
+\subsection{Phase 3: Accessibility Evaluation using WAVE Tool}
+
+The third phase will involve an accessibility audit of all the repositories generated. We will employ the WAVE (Web Accessibility Evaluation Tool) browser extension, a widely recognized tool for identifying accessibility issues based on the Web Content Accessibility Guidelines (WCAG). For each generated website, a WAVE report will be generated. This report will detail all instances where WCAG guidelines are violated, categorizing the severity and nature of the accessibility barriers present (e.g., missing alternative text for images, insufficient color contrast, lack of keyboard navigation). This evaluation will provide an understanding of the inherent accessibility of the outputs produced by the AI tools under different prompting conditions. The identified violations will be documented, noting the specific WCAG guideline(s) violated and the context within the generated code or UI.
+
+\subsection{Phase 4: Assessing AI Tools' Remediation Capabilities}
+
+The final phase aims to investigate the ability of v0 and bolt.new to address the accessibility issues identified in the previous stage. We will take the specific accessibility violations flagged by the WAVE tool and formulate targeted prompts instructing the AI tools to rectify these issues. For example, if an image is flagged as missing alternative text, we will prompt the tool to "add descriptive alt text to the image." Similarly, for color contrast issues, we will prompt for adjustments to meet WCAG contrast ratio requirements. By feeding these problem-specific prompts back into the respective AI tools, we can assess their capacity to understand and implement accessibility fixes. This phase will provide critical insights into the current state of AI-driven accessibility remediation, highlighting both the potential and the limitations of these tools in automatically addressing accessibility barriers in generated web content. The success and nature of the fixes implemented by each tool will be analyzed and compared.
 
 \section{Expected Outcomes}
-Presents the expected outcomes from the work. It has to be aligned with the previous sections and Proposal Goals
+The study is expected to produce a catalog of accessibility violations and an analysis of the AI's remediation success between evaluated tools. The research also aims to provide recommendations for prompt selection to minimize accessibility barriers, demonstrating -if there is any- the impact of accessibility-focused prompting.
 
-\section{Conclusions}
-A brief closing statement rounding up the proposal.
-
-\subsection{How to add Comments and Track Changes}
-
-Comments can be added to your project by highlighting some text and clicking ``Add comment'' in the top right of the editor pane. To view existing comments, click on the Review menu in the toolbar above. To reply to a comment, click on the Reply button in the lower right corner of the comment. You can close the Review pane by clicking its name on the toolbar when you're done reviewing for the time being.
-
-Track changes are available on all our \href{https://www.overleaf.com/user/subscription/plans}{premium plans}, and can be toggled on or off using the option at the top of the Review pane. Track changes allow you to keep track of every change made to the document, along with the person making the change. 
+\pagebreak
 
 \bibliographystyle{acm}
-\bibliography{sample}
+\bibliography{default}
 
 \end{document}
