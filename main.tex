@@ -36,6 +36,10 @@
   short=WAI,
   long=Web Accessibility Initiative,
 }
+\DeclareAcronym{llm}{
+  short=LLM,
+  long=Large Language Model
+}
 
 \begin{document}
 \maketitle
@@ -89,11 +93,11 @@ This is crucial ethically, legally, for broader audience reach, and to ensure th
 
 \section{Literature Review}
 The investigation encompasses two key phases: site generation and accessibility assessment.
-The site generation phase will be evaluated based on the prompt selection methodology, the specific Large Language Model (LLM) employed,
+The site generation phase will be evaluated based on the prompt selection methodology, the specific \ac{llm} employed,
 and any iterative prompting strategies implemented to address potential issues.
-The subsequent assessment phase will focus on the methodology used to evaluate the generated websites against the Web Content Accessibility Guidelines (WCAG).
+The subsequent assessment phase will focus on the methodology used to evaluate the generated websites against the \ac{wcag}.
 
-A singular study employing a comparable methodology is that of Aljedaani et al. (2024) \cite{aljedaani_does_2024}, who utilized ChatGPT for a related purpose.
+A singular study employing a comparable methodology is that of Aljedaani et al. \cite{aljedaani_does_2024}, who utilized ChatGPT for a related purpose.
 In their work, 88 developers generated websites, and ChatGPT was subsequently prompted to remediate these websites.
 Their findings indicated that a majority of the generated websites contained accessibility violations.
 However, ChatGPT demonstrated a 70\% success rate in rectifying these violations within its own generated source code
@@ -107,8 +111,8 @@ which are formulated without explicit reasoning and are presented as inherently 
 
 The second aspect of this study concerns assessment.
 WCAG 2.2 is a guidelines document and there needs to be a methodology to check those front-ends against those guidelines.
-There are three SC (success criteria) levels defined, level-A, AA, and AAA.
-Abu Doush et al. (2023)\cite{abu_doush_web_2023} conducted an evaluation of 34 automated web accessibility assessment tools, including WAVE,
+There are three \ac{sc} levels defined, level-A, AA, and AAA.
+Abu Doush et al. \cite{abu_doush_web_2023} conducted an evaluation of 34 automated web accessibility assessment tools, including WAVE,
 to determine their effectiveness in measuring WCAG compliance.
 Their results showed that “44\% of all WCAG SC can be automatically checked offering conformance details directly from web content.
 [...] The other 43\% of WCAG SC “all levels” cannot be easily checked automatically.
@@ -153,17 +157,13 @@ Following these guidelines will also often make web content more usable to users
 WCAG 2.2 success criteria are written as testable statements that are not technology-specific.
 Guidance about satisfying the success criteria in specific technologies,
 as well as general information about interpreting the success criteria, is provided in separate documents.
-%TODO: fix citation below
-See Web Content Accessibility Guidelines (WCAG) Overview for an introduction and links to WCAG technical and educational material.”
-(Web Content Accessibility Guidelines (WCAG) 2.2, 2024)
+See Web Content Accessibility Guidelines (WCAG) Overview for an introduction and links to WCAG technical and educational material.” \cite{wcag_2.2}
 
 There are 45 automated listing  evaluation tools for websites on WAI’s website (Initiative, n.d.).
 Some of them are specific like WCAG Color Contrast Checker that checks only for specific items.
 Many of the studies use the WAVE Web Accessibility Evaluation Tool by WebAIM.
 WAVE gives a visual representation of the websites and highlights errors with yellow and on the sidebar gives the list of the problems.
-%TODO: add citation
-It has a Chromium plugin where you can initiate the evaluation from.  It is up to date to access WCAG 2.2.
-(WAVE Web Accessibility Evaluation Tools, n.d.)
+It has a Chromium plugin where you can initiate the evaluation from.  It is up to date to access WCAG 2.2. \cite{wave}
 
 \section{Research Plan}
 
